@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { ListTodo, ArrowRight } from 'lucide-react';
+import { ClipboardCheck, ArrowRight } from 'lucide-react';
 import Header from '../header';
 
 export default function LandingPage() {
@@ -14,7 +14,7 @@ export default function LandingPage() {
         <section className="container mx-auto grid items-center gap-8 px-4 py-16 text-center md:grid-cols-2 md:py-24 md:text-left">
           <div className="space-y-6">
             <div className="flex items-center justify-center gap-2 md:justify-start">
-              <ListTodo className="h-8 w-8 text-primary" />
+              <ClipboardCheck className="h-8 w-8 text-primary" />
               <h1 className="font-headline text-4xl font-bold md:text-5xl">
                 Optima
               </h1>
@@ -33,10 +33,10 @@ export default function LandingPage() {
           </div>
           <div className="relative h-64 w-full md:h-96">
             <Image
-              src="https://picsum.photos/600/400"
+              src="https://picsum.photos/800/600"
               alt="A person organizing tasks on a board"
               fill
-              data-ai-hint="task management"
+              data-ai-hint="organizing tasks"
               className="rounded-lg object-cover shadow-lg"
             />
           </div>

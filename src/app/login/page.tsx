@@ -2,7 +2,7 @@
 
 import { useAuth } from '@/contexts/auth-context';
 import { Button } from '@/components/ui/button';
-import { ListTodo } from 'lucide-react';
+import { ClipboardCheck } from 'lucide-react';
 
 const GoogleIcon = () => (
   <svg className="mr-2 h-4 w-4" viewBox="0 0 48 48">
@@ -33,7 +33,7 @@ export default function LoginPage() {
       <div className="w-full max-w-md">
         <div className="mb-8 flex flex-col items-center text-center">
           <div className="mb-4 flex items-center gap-2">
-            <ListTodo className="h-8 w-8 text-primary" />
+            <ClipboardCheck className="h-8 w-8 text-primary" />
             <h1 className="font-headline text-4xl font-bold">Optima</h1>
           </div>
           <p className="text-muted-foreground">

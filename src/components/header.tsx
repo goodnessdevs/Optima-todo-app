@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ListTodo, LogOut, User } from 'lucide-react';
+import { ClipboardCheck, LogOut, User } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,7 +22,7 @@ export default function Header() {
     <header className="border-b bg-transparent">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
         <Link href="/" className="flex items-center gap-2">
-          <ListTodo className="h-6 w-6 text-primary" />
+          <ClipboardCheck className="h-6 w-6 text-primary" />
           <h1 className="font-headline text-xl font-bold">Optima</h1>
         </Link>
 
