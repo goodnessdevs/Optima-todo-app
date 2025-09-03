@@ -5,6 +5,7 @@ import { useAuth } from '@/contexts/auth-context';
 import { TaskProvider } from '@/contexts/task-context';
 import Header from '@/components/header';
 import { Loader2 } from 'lucide-react';
+import Link from 'next/link';
 
 export default function AuthenticatedLayout({
   children,
@@ -35,9 +36,19 @@ export default function AuthenticatedLayout({
         <main className="container mx-auto flex-grow p-4 py-8 md:p-8">
           {children}
         </main>
-        <footer className="py-4 text-center text-sm text-muted-foreground">
-          <p>Built for you by Optima</p>
-        </footer>
+        <footer className="border-t">
+        <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 text-sm text-muted-foreground sm:flex-row">
+          <p>&copy; {new Date().getFullYear()} Optima. All rights reserved.</p>
+          <div className="flex gap-4">
+            <Link href="#" className="hover:text-primary hover:underline">
+              Terms of Service
+            </Link>
+            <Link href="#" className="hover:text-primary hover:underline">
+              Privacy Policy
+            </Link>
+          </div>
+        </div>
+      </footer>
       </div>
     </TaskProvider>
   );
