@@ -14,7 +14,8 @@ import {
   signOut,
   type User,
 } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
+import { auth, db } from '@/lib/firebase';
 import { useRouter } from 'next/navigation';
 
 interface AuthContextType {
@@ -32,7 +33,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, user => {
+    const unsubscribe = onAuthStateChanged(auth, async user => {
+      if (user) {
+        // Create or update user document in Firestore
+        const userRef = doc(db, 'users', user.uid);
+        await setDoc(
+          userRef,
+          {
+            displayName: user.displayName,
+            email: user.email,
+            photoURL: user.photoURL,
+            lastLogin: serverTimestamp(),
+          },
+          { merge: true }
+        );
+      }
       setUser(user);
       setLoading(false);
     });
