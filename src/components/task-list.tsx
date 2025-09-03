@@ -3,6 +3,7 @@
 import { useTasks } from '@/contexts/task-context';
 import TaskCard from './task-card';
 import Image from 'next/image';
+import { AnimatePresence, motion } from 'framer-motion';
 
 export default function TaskList() {
   const { tasks } = useTasks();
@@ -32,10 +33,15 @@ export default function TaskList() {
   }
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-      {sortedTasks.map(task => (
-        <TaskCard key={task.id} task={task} />
-      ))}
-    </div>
+    <motion.div
+      layout
+      className="grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+    >
+      <AnimatePresence>
+        {sortedTasks.map(task => (
+          <TaskCard key={task.id} task={task} />
+        ))}
+      </AnimatePresence>
+    </motion.div>
   );
 }
