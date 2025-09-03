@@ -50,17 +50,25 @@ export default function AddTask() {
     },
   });
 
-  const onSubmit = (data: TaskFormValues) => {
-    addTask({
-      title: data.title,
-      description: data.description || '',
-    });
-    form.reset();
-    setOpen(false);
-    toast({
-      title: 'Task Created',
-      description: `"${data.title}" has been added to your list.`,
-    });
+  const onSubmit = async (data: TaskFormValues) => {
+    try {
+      await addTask({
+        title: data.title,
+        description: data.description || '',
+      });
+      form.reset();
+      setOpen(false);
+      toast({
+        title: 'Task Created',
+        description: `"${data.title}" has been added to your list.`,
+      });
+    } catch (error) {
+      toast({
+        variant: 'destructive',
+        title: 'Error creating task',
+        description: 'There was a problem saving your task. Please try again.',
+      });
+    }
   };
 
   return (
@@ -113,7 +121,7 @@ export default function AddTask() {
             />
             <DialogFooter>
               <Button type="submit" disabled={form.formState.isSubmitting}>
-                Create Task
+                {form.formState.isSubmitting ? 'Creating...' : 'Create Task'}
               </Button>
             </DialogFooter>
           </form>

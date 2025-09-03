@@ -4,14 +4,33 @@ import { useTasks } from '@/contexts/task-context';
 import TaskCard from './task-card';
 import Image from 'next/image';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Skeleton } from './ui/skeleton';
 
 export default function TaskList() {
-  const { tasks } = useTasks();
+  const { tasks, loadingTasks } = useTasks();
 
   const sortedTasks = [...tasks].sort((a, b) => {
-    if (a.completed === b.completed) return 0;
+    if (a.completed === b.completed) {
+       return b.createdAt.toMillis() - a.createdAt.toMillis();
+    }
     return a.completed ? 1 : -1;
   });
+
+  if (loadingTasks) {
+    return (
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        {[...Array(3)].map((_, i) => (
+          <div key={i} className="flex flex-col space-y-3">
+            <Skeleton className="h-[125px] w-full rounded-xl" />
+            <div className="space-y-2">
+              <Skeleton className="h-4 w-[250px]" />
+              <Skeleton className="h-4 w-[200px]" />
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
 
   if (sortedTasks.length === 0) {
     return (
