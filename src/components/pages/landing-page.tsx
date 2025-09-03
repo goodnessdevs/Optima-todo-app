@@ -34,9 +34,9 @@ export default function LandingPage() {
           <div className="relative h-64 w-full md:h-96">
             <Image
               src="https://picsum.photos/600/400"
-              alt="Productivity illustration"
+              alt="A person organizing tasks on a board"
               fill
-              data-ai-hint="productivity desk"
+              data-ai-hint="task management"
               className="rounded-lg object-cover shadow-lg"
             />
           </div>
