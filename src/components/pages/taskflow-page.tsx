@@ -26,7 +26,7 @@ export default function TaskFlowPage() {
           <TaskList />
         </main>
         <footer className="py-4 text-center text-sm text-muted-foreground">
-          <p>Built for you by TaskFlow</p>
+          <p>Built for you by Optima</p>
         </footer>
       </div>
     </TaskProvider>

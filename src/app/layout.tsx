@@ -3,8 +3,8 @@ import './globals.css';
 import { Toaster } from '@/components/ui/toaster';
 
 export const metadata: Metadata = {
-  title: 'TaskFlow',
-  description: 'An intelligent to-do app to help you flow through your tasks.',
+  title: 'Optima',
+  description: 'An intelligent to-do app to help you optimize your tasks.',
 };
 
 export default function RootLayout({

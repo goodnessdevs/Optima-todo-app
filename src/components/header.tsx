@@ -16,7 +16,7 @@ export default function Header() {
       <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
         <div className="flex items-center gap-2">
           <ListTodo className="h-6 w-6 text-primary" />
-          <h1 className="font-headline text-xl font-bold">TaskFlow</h1>
+          <h1 className="font-headline text-xl font-bold">Optima</h1>
         </div>
 
         <DropdownMenu>
