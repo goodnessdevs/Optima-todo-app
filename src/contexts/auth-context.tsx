@@ -10,7 +10,8 @@ import {
 import {
   onAuthStateChanged,
   GoogleAuthProvider,
-  signInWithPopup,
+  signInWithRedirect,
+  getRedirectResult,
   signOut,
   type User,
 } from 'firebase/auth';
@@ -35,7 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async user => {
       if (user) {
-        // Create or update user document in Firestore
+        // User is signed in
         const userRef = doc(db, 'users', user.uid);
         await setDoc(
           userRef,
@@ -47,19 +48,44 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           },
           { merge: true }
         );
+        setUser(user);
+      } else {
+        // User is signed out
+        // Check for redirect result
+        getRedirectResult(auth)
+          .then(result => {
+            if (result && result.user) {
+              // This is the signed-in user
+              const user = result.user;
+              const userRef = doc(db, 'users', user.uid);
+              setDoc(
+                userRef,
+                {
+                  displayName: user.displayName,
+                  email: user.email,
+                  photoURL: user.photoURL,
+                  lastLogin: serverTimestamp(),
+                },
+                { merge: true }
+              );
+              setUser(user);
+              router.push('/tasks');
+            }
+          })
+          .catch(error => {
+            console.error('Error getting redirect result:', error);
+          });
       }
-      setUser(user);
       setLoading(false);
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [router]);
 
   const loginWithGoogle = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
-      router.push('/tasks');
+      await signInWithRedirect(auth, provider);
     } catch (error) {
       console.error('Error signing in with Google:', error);
     }
