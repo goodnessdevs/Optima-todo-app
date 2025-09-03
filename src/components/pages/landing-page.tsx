@@ -2,7 +2,13 @@
 
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ClipboardCheck, ArrowRight } from 'lucide-react';
+import {
+  ClipboardCheck,
+  ArrowRight,
+  Github,
+  Linkedin,
+  Instagram,
+} from 'lucide-react';
 import Header from '../header';
 
 export default function LandingPage() {
@@ -69,11 +75,23 @@ export default function LandingPage() {
         <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 text-sm text-muted-foreground sm:flex-row">
           <p>&copy; {new Date().getFullYear()} Optima. All rights reserved.</p>
           <div className="flex gap-4">
-            <Link href="#" className="hover:text-primary hover:underline">
-              Terms of Service
+            <Link
+              href="#"
+              className="text-muted-foreground transition-colors hover:text-primary"
+            >
+              <Github className="h-5 w-5" />
             </Link>
-            <Link href="#" className="hover:text-primary hover:underline">
-              Privacy Policy
+            <Link
+              href="#"
+              className="text-muted-foreground transition-colors hover:text-primary"
+            >
+              <Linkedin className="h-5 w-5" />
+            </Link>
+            <Link
+              href="#"
+              className="text-muted-foreground transition-colors hover:text-primary"
+            >
+              <Instagram className="h-5 w-5" />
             </Link>
           </div>
         </div>

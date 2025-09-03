@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import { useAuth } from '@/contexts/auth-context';
 import { TaskProvider } from '@/contexts/task-context';
 import Header from '@/components/header';
-import { Loader2 } from 'lucide-react';
+import { Github, Instagram, Linkedin, Loader2 } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AuthenticatedLayout({
@@ -37,18 +37,30 @@ export default function AuthenticatedLayout({
           {children}
         </main>
         <footer className="border-t">
-        <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 text-sm text-muted-foreground sm:flex-row">
-          <p>&copy; {new Date().getFullYear()} Optima. All rights reserved.</p>
-          <div className="flex gap-4">
-            <Link href="#" className="hover:text-primary hover:underline">
-              Terms of Service
-            </Link>
-            <Link href="#" className="hover:text-primary hover:underline">
-              Privacy Policy
-            </Link>
+          <div className="container mx-auto flex flex-col items-center justify-between gap-4 px-4 py-6 text-sm text-muted-foreground sm:flex-row">
+            <p>&copy; {new Date().getFullYear()} Optima. All rights reserved.</p>
+            <div className="flex gap-4">
+              <Link
+                href="#"
+                className="text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Github className="h-5 w-5" />
+              </Link>
+              <Link
+                href="#"
+                className="text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Linkedin className="h-5 w-5" />
+              </Link>
+              <Link
+                href="#"
+                className="text-muted-foreground transition-colors hover:text-primary"
+              >
+                <Instagram className="h-5 w-5" />
+              </Link>
+            </div>
           </div>
-        </div>
-      </footer>
+        </footer>
       </div>
     </TaskProvider>
   );
